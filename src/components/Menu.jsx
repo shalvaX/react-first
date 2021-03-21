@@ -1,10 +1,16 @@
 import React, { Component } from 'react';
 import Greeting from "./Greeting";
 import Colors from "./Colors";
+import Numbers from "./Numbers";
 
 class Menu extends Component {
+    constructor() {
+        super();
+        this.pageController = this.pageController.bind(this);
+    }
+
     state = {
-        value: '',
+        value: 'Greeting',
         greet: <Greeting/>,
         color: '',
         numbers: '',
@@ -14,29 +20,28 @@ class Menu extends Component {
 
     }
 
-    pageController = (event) => {
-        this.setState({value: event.target.value});
-        console.log(this.state.value)
+    async pageController (event)  {
+        await this.setState({value: event.target.value});
+
         event.preventDefault();
         if (this.state.value === "Colors"){
             this.setState({color: <Colors/>});
             this.setState({greet: ''});
-            this.setState({number:''});
-
+            this.setState({numbers:''});
         }
         if (this.state.value === "Greeting"){
             this.setState({color: ''});
             this.setState({greet: <Greeting/>});
-            this.setState({number:''});
-            event.preventDefault();
+            this.setState({numbers:''});
         }
         if (this.state.value === "Numbers"){
             this.setState({color: ''});
             this.setState({greet: ''});
-            this.setState({number:''});
-            event.preventDefault();
+            this.setState({numbers:<Numbers/>});
         }
+        console.log(this.state.value)
     }
+
 
     render(){
         return(
