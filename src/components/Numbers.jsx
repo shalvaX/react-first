@@ -31,12 +31,9 @@ class Numbers extends Component  {
     async controlNumber (event) {
         await this.setState({value: event.target.textContent});
         console.log(this.state.value)
-        if (this.state.value === "+1") this.setState({number: this.state.number + 1 })
-        else if (this.state.value === "+5") this.setState({number: this.state.number + 5})
-        else if (this.state.value === "+100") this.setState({number: this.state.number + 100 })
-        else if (this.state.value === "-1") this.setState({number: this.state.number - 1 })
-        else if (this.state.value === "-5") this.setState({number: this.state.number - 5 })
-        else if (this.state.value === "-100") this.setState({number: this.state.number - 100 })
+
+        if (this.state.value[0] === "+") this.setState({number:this.state.number + parseInt(this.state.value.slice(1))})
+        else this.setState({number:this.state.number - parseInt(this.state.value.slice(1))})
     }
     render(){
         return(
