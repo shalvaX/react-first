@@ -8,28 +8,30 @@ class Colors extends Component {
     }
 
     state = {
-        color: 'bg- position-relative start-50 translate-middle mb-2 text-'
+        color: '',
+        backgcolor: ''
         //color: 'bg-X position-relative start-50 translate-middle mb-2 text-Y'
     }
     colorController () {
-        let {color} = this.state;
-        return color;
+        let {backgcolor,color} = this.state;
+        return `bg-${backgcolor} position-relative start-50 translate-middle mb-2 text-${color}`;
     }
 
-    async getColor (event)  {
+    getColor (event)  {
         let length = event.target.className.length;
         const cutedColor = event.target.className.slice(13,length);
-        /*
+        let Iwantcolor;
+        let backcolor;
         if (cutedColor === "warning") {
-            await this.setState({color: this.state.color.replace("X","dark").replace("Y",cutedColor)})
+            Iwantcolor = cutedColor;
+            backcolor = "dark";
         }
        else {
-            await this.setState({color: this.state.color.replace("X","light").replace("Y",cutedColor)})
+           backcolor = "light";
+           Iwantcolor = cutedColor;
         }
-         */
-        await this.setState({color: this.state.color.slice(0,58) + cutedColor});
-
-        console.log(this.state.color)
+       this.setState( {color: Iwantcolor,backgcolor:backcolor});
+       console.log(Iwantcolor,backcolor)
 
 
     }
